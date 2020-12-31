@@ -83,6 +83,7 @@
                  $i = 1;
                  while ($data=mysqli_fetch_array($query)) {
                       $id = $data['id_barang'];
+                      $idd = $data['id_detail_pengembalian'];
                       $qnb = mysqli_query($conn, "SELECT nama from barang where id_barang='$id'");
                       $fnb = mysqli_fetch_array($qnb);
                    ?>
@@ -94,7 +95,7 @@
                     <td><?= $data['jumlah']?></td>
                     <td style="text-align: center;">
                       <a data-toggle="modal" data-target="#edit<?= $data['id_detail_pengembalian']?>" class="btn btn-warning"><i class="material-icons">library_add</i></a>
-                      <a class="btn btn-danger" onclick="hapus('pengembalian/hapusbarang.php?id=<?= $id?>')"><i class="material-icons">close</i></a>
+                      <a class="btn btn-danger" onclick="hapus('pengembalian/hapusbarang.php?id=<?= $idd?>')"><i class="material-icons">close</i></a>
                     </td>
                   </tr>
                   <div class="modal fade" id="edit<?= $data['id_detail_pengembalian']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

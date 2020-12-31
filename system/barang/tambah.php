@@ -6,9 +6,10 @@ $nama = $_POST['nama'];
 $stok = $_POST['stok'];
 $tempat = $_POST['tempat'];
 
-if (mysqli_query($conn, "SELECT * FROM barang where nama='$nama'")) {
-	$_SESSION['notif'] = 'Data Sudah Ada';
-	$_SESSION['icon'] = 'info';
+$checkq = mysqli_query($conn, "SELECT * FROM barang where nama='$nama'");
+if (mysqli_num_rows($checkq) == 1) {
+	$_SESSION['notif'] = 'Barang Sudah Ada';
+	$_SESSION['icon'] = 'warning';
 	echo "<script>window.location='../home.php?menu=2';</script>";
 }else{
 	$sql="INSERT INTO barang values ('','$nama','$stok','$tempat')";

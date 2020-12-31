@@ -8,9 +8,10 @@ if (isset($_POST['jabatan'])) {
 	$user = $_POST['user'];
 	$pass = $_POST['pass'];
 
-	if (mysqli_query($conn, "SELECT * FROM user where nama_user='$nama'")) {
-		$_SESSION['notif'] = 'Data Sudah Ada';
-		$_SESSION['icon'] = 'info';
+	$check = mysqli_query($conn, "SELECT * FROM user where nama_user='$nama'");
+	if (mysqli_num_rows($check) == 1) {
+		$_SESSION['notif'] = 'Pengguna Sudah Terdaftar';
+		$_SESSION['icon'] = 'warning';
 		echo "<script>window.location='../home.php?menu=3';</script>";
 	}else{
 		$sql="INSERT INTO user values ('','$nama','$jabatan','$user','$pass')";

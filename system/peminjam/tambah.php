@@ -7,9 +7,11 @@ $alamat = $_POST['alamat'];
 $telepon = $_POST['no_telp'];
 $email = $_POST['email'];
 
-if (mysqli_query($conn, "SELECT * FROM peminjam where nama='$nama'")) {
-	$_SESSION['notif'] = 'Data Sudah Ada';
-	$_SESSION['icon'] = 'info';
+$check = mysqli_query($conn, "SELECT * FROM peminjam where nama='$nama'");
+
+if (mysqli_num_rows($check) == 1) {
+	$_SESSION['notif'] = 'Peminjam Sudah Terdaftar';
+	$_SESSION['icon'] = 'warning';
 	echo "<script>window.location='../home.php?menu=4';</script>";
 }else{
 	$sql="INSERT INTO peminjam values ('','$nama','$alamat','$telepon','$email')";

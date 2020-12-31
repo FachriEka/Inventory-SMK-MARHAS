@@ -4,7 +4,7 @@
 
 	$id=$_GET['id'];
 
-	$sql="DELETE FROM detail_pengembalian where id_barang='$id' and id_pengembalian='0'";
+	$sql="DELETE FROM detail_pengembalian where id_detail_pengembalian='$id'";
 	$query=mysqli_query($conn,$sql);
 
 	if ($query) {
