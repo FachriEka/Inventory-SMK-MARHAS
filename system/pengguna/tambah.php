@@ -8,15 +8,21 @@ if (isset($_POST['jabatan'])) {
 	$user = $_POST['user'];
 	$pass = $_POST['pass'];
 
-	$sql="INSERT INTO user values ('','$nama','$jabatan','$user','$pass')";
-	$query=mysqli_query($conn,$sql);
-
-	if ($query) {
-		$_SESSION['notif'] = 'Data Berhasil Ditambah';
-		$_SESSION['icon'] = 'success';
+	if (mysqli_query($conn, "SELECT * FROM user where nama_user='$nama'")) {
+		$_SESSION['notif'] = 'Data Sudah Ada';
+		$_SESSION['icon'] = 'info';
+		echo "<script>window.location='../home.php?menu=3';</script>";
 	}else{
-		$_SESSION['notif'] = 'Data Gagal Ditambah';
-		$_SESSION['icon'] = 'error';
+		$sql="INSERT INTO user values ('','$nama','$jabatan','$user','$pass')";
+		$query=mysqli_query($conn,$sql);
+
+		if ($query) {
+			$_SESSION['notif'] = 'Data Berhasil Ditambah';
+			$_SESSION['icon'] = 'success';
+		}else{
+			$_SESSION['notif'] = 'Data Gagal Ditambah';
+			$_SESSION['icon'] = 'error';
+		}
 	}
 }else{
 	$_SESSION['notif'] = 'Jabatan Belum Dipilih';

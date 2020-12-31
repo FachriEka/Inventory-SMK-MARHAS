@@ -46,6 +46,8 @@ if ($jbagus < 0){
 				$bid = $rowb['id_detail_barang'];
 				$upb = mysqli_query($conn, "UPDATE detail_barang set kondisi='Bagus' where id_detail_barang='$bid'");
 			}
+		}else{
+			$upb = mysqli_query($conn, "UPDATE detail_barang set kondisi='Bagus' where id_barang='$id' and status='Tersedia'");
 		}
 		$_SESSION['notif'] = 'Data Berhasil Diubah';
 		$_SESSION['icon'] = 'success';

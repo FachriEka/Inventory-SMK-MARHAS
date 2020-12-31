@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
 	<title></title>
 </head>
 <body>
@@ -9,16 +8,17 @@
 	header("Content-type: application/vnd-ms-excel");
 	header("Content-Disposition: attachment; filename=Data Barang.xls");
 	?>
-	<div class="row">
-		<div class="col-md-6">
-			<table border="1px">
-				<tr>
-		            <th>Nama Barang</th>
-		            <th>Jumlah Rusak</th>
-		            <th>Jumlah Bagus</th>
-		            <th>Jumlah Dipinjam</th>
-		            <th>Jumlah Tersedia</th>
-				</tr>
+	<table>
+		<tr>
+			<td>
+				<table border="1px">
+					<tr>
+			            <th>Nama Barang</th>
+			            <th>Jumlah Rusak</th>
+			            <th>Jumlah Bagus</th>
+			            <th>Jumlah Dipinjam</th>
+			            <th>Jumlah Tersedia</th>
+					</tr>
 			<?php
 			    include '../../config/koneksi.php';
 			    $id = $_GET['id'];
@@ -46,16 +46,18 @@
 				<?php
 				}
 				?>
-			</table>
-		</div>
-		<div class="col-md-6">
-			<table border="1px">
-				<tr>
-					<th>No</th>
-		            <th>Nama Barang</th>
-		            <th>Harga</th>
-		            <th>Keterangan</th>
-				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table border="1px">
+					<tr>
+						<th>No</th>
+			            <th>Nama Barang</th>
+			            <th>Harga</th>
+			            <th>Keterangan</th>
+					</tr>
 				<?php
 				    include '../../config/koneksi.php';
 				    $id = $_GET['id'];
@@ -66,18 +68,19 @@
 		            	$qnama = mysqli_query($conn, "SELECT * FROM barang where id_barang='$id'");
 		            	$nama = mysqli_fetch_array($qnama);
 				?>  
-				<tr style="text-align: center;">
-				    <td><?= $i?></td>
-				    <td><?= $nama['nama']?></td>
-				    <td><?= $data['kondisi']?></td>
-				    <td><?= $data['status']?></td>
-				</tr>
+					<tr style="text-align: center;">
+					    <td><?= $i?></td>
+					    <td><?= $nama['nama']?></td>
+					    <td><?= $data['kondisi']?></td>
+					    <td><?= $data['status']?></td>
+					</tr>
 				<?php
 				    $i++;}
 				?>
-			</table>
-		</div>
-	</div>
+				</table>
+			</td>
+		</tr>
+	</table>
 <script type="text/javascript">
 	window.location = "../home.php?menu=2";
 </script>
